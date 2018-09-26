@@ -19,6 +19,7 @@ public class ExecutaPizzaria {
 			System.out.println("-----PIZZARIA----------");
 			System.out.println("1 - Ver Cardápio");
 			System.out.println("2 - Efetuar Pedido");
+			System.out.println("3 -  Sair");
 			
 			menu = ler.nextInt();
 			
@@ -26,23 +27,43 @@ public class ExecutaPizzaria {
 			
 			case 1:
 				imprimirSabores();
+				break;
 				
 			case 2:
 				//efetuarPedido();
+				break;
+			case 3:
+				controle = 0;
+				break;
 				
 			default:
-				System.out.println("Digite uma opção válida");
+				System.out.println("Digite uma opção válida \n");
 			
 			}
 			
 		}
 	}
 	
+	public static void efetuarPedido() {
+		
+		Scanner ler = new Scanner(System.in);
+		Pedido pedido;
+		String cliente;
+		int num = 1;
+		
+		System.out.println("Digite nome do cliente: ");
+		
+		cliente = ler.nextLine();
+		pedido = new Pedido(num, cliente);
+		
+		
+	}
+	
 	public static void imprimirSabores() {
 		
 		for(int i=0; i<4; i++) {
 			
-			System.out.println(""
+			System.out.println("Cardápio do dia: "
 					+ sabores[i].getDescricao()
 					
 					);
@@ -55,7 +76,7 @@ public class ExecutaPizzaria {
 		sabores = new Sabor[4];
 		while (quantidade < 4) {
 			Scanner ler = new Scanner(System.in);
-			System.out.println("Digite a descrição do sabor"
+			System.out.println("Digite a descrição do sabor      "
 					+ (quantidade + 1) + ": ");
 			String descricaoSabor = ler.nextLine();
 			System.out.println("Digite a qtd de ingredientes do sabor"
