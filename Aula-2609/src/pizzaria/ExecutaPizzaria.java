@@ -41,13 +41,59 @@ public class ExecutaPizzaria {
 					ler.nextLine();
 					switch (c) {
 					case 1:
+												
 						System.out.println("Informe o nome do sabor da pizza: ");
 						imprimirCardapio();
 						int numSabor = ler.nextInt();
 						ler.nextLine();
-						System.out.println("Informe o tamanho da pizza: (4, 8 ou 12 pedaços)");
-						int qtdPedacos = lerInt(ler);
-						System.out.println("Gostaria de acrescentar borda?");
+						
+						System.out.println("Informe o tamanho da pizza (4, 8 ou 12 pedaços)");
+						int qtdPedacos = ler.nextInt();
+						
+						System.out.println("Informe se tem borda:");
+						System.out.println("1 - Sim");
+						System.out.println("2 - Não");
+						
+						int borda = ler.nextInt();
+						ler.nextLine();
+						boolean bordaBorda;
+						String saborBorda;
+						
+						if (borda == 1) {
+							bordaBorda = true;
+							System.out.println("Informe o sabor da borda:");
+							System.out.println("1 - Catupiry");
+							System.out.println("2 - Cheddar");
+							saborBorda = ler.nextLine();
+							switch (saborBorda) {
+							case "1":
+								saborBorda = "Catupiry";
+
+							case "2":
+								saborBorda = "Cheddar";
+							}
+						} else {
+							bordaBorda = false;
+							saborBorda = "Pizza sem borda recheada!";
+						}
+
+						Pizza pizza = new Pizza(qtdPedacos, sabores[numSabor], bordaBorda, saborBorda);
+						System.out.println("Quantas pizzas o cliente vai querer?");
+						int quantidade = ler.nextInt();
+						System.out.println("Observação: ");
+						String observacao = ler.nextLine();
+						ItemPedido item = new ItemPedido(quantidade, pizza, observacao);
+						System.out.println(item);
+						break;
+						
+						//___________________________________________________________
+						//System.out.println("Informe o nome do sabor da pizza: ");
+						//imprimirCardapio();
+						//int numSabor = ler.nextInt();
+						//ler.nextLine();
+						//System.out.println("Informe o tamanho da pizza: (4, 8 ou 12 pedaços)");
+						//int qtdPedacos = lerInt(ler);
+						//System.out.println("Gostaria de acrescentar borda?");
 						
 						//terminar de ler atributos da pizza
 						//criar a pizza
@@ -55,7 +101,7 @@ public class ExecutaPizzaria {
 						//ler observacao e qtd da pizza
 						//add o item pedido ao pedido
 						//ItemPedido item = new ItemPedido(quantidade, pizza, observacao);
-						break;
+						//break;
 					case 2:
 						//imprimir o pedido
 						break;

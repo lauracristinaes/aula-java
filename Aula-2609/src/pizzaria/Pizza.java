@@ -8,6 +8,13 @@ public class Pizza {
 	private boolean borda;
 	private String saborBorda;
 	
+	public Pizza (int tamanho, Sabor sabor, boolean borda, String saborBorda) {
+		this.qtdPedacos = tamanho;
+		this.sabor = sabor;
+		this.borda = borda;
+		this.saborBorda = saborBorda;
+	}
+	
 	public void preencherBorda(
 			boolean borda, 
 			String saborBorda) {
