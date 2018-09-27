@@ -56,12 +56,20 @@ public class ExecutaPizzaria {
 		cliente = ler.nextLine();
 		pedido = new Pedido(num, cliente);
 		
+		int c = 0;
+		
+		while(c !=3) {
+			
+			
+		}
+	
+		
 		
 	}
 	
 	public static void imprimirSabores() {
 		
-		for(int i=0; i<4; i++) {
+		for(int i=0; i<sabores.length; i++) {
 			
 			System.out.println("Cardápio do dia: "
 					+ sabores[i].getDescricao()

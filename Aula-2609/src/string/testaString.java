@@ -81,6 +81,12 @@ public class testaString {
 	//Faça um programa que receba um telefone e verifique se é válido 
 			//(com 10 ou 11 posicoes), 
 			//caso positivo formate este telefone (00) 0 0000-0000 ou (00) 0000-0000
+	
+	
+	
+//substituir caracteres especiais
+	
+	
 	}	
 	
 }
