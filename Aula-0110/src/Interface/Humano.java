@@ -29,6 +29,12 @@ public class Humano implements IPersonagem {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void gesticular() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

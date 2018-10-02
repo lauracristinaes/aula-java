@@ -1,6 +1,6 @@
 package Interface;
 
-public class Elfo implements IPersonagem {
+public class    implements IPersonagem {
 
 	public void andar() {
 		System.out.println("Elfo andando ");
@@ -30,6 +30,13 @@ public class Elfo implements IPersonagem {
 
 	@Override
 	public void falar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void gesticular() {
 		// TODO Auto-generated method stub
 		
 	}
