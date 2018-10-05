@@ -1,6 +1,6 @@
 package Interface;
 
-public class    implements IPersonagem {
+public class Elfo implements IPersonagem {
 
 	public void andar() {
 		System.out.println("Elfo andando ");

@@ -1,5 +1,7 @@
 package Heranca;
 
+import Pessoa.Pessoa;
+
 public class Colaborador extends Pessoa {
 	
 	private String carteiraTrabalho;

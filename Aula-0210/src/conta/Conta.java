@@ -1,5 +1,8 @@
 package conta;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 public class Conta {
 	
 	private String titular;
@@ -18,7 +21,7 @@ public class Conta {
 		
 	}
 	
-	public void setSexo(String sexo) {
+	public void setSexo(String sexo) throws FileNotFoundException   {
 		
 		ESexo sexoselecionado = null;
 		sexoselecionado  = ESexo.valueOf(sexo);
@@ -30,7 +33,13 @@ public class Conta {
 			e.printStackTrace();
 			
 		}
-		
+		PrintWriter writer = new PrintWriter("");
+		try {
+			PrintWriter writer1 = new PrintWriter("");
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace(writer);
+		}
 		
 		
 		if (sexoselecionado == null) {
