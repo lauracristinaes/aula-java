@@ -9,5 +9,11 @@ public class User extends Person {
 	
 	public User() {
 		preferences = new ArrayList<>();
+		
+		for(String nome : preferences) {
+			
+			System.out.println(nome);
+		}
+		
 	}
 }
