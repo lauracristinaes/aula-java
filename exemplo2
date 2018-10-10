@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8">
+	<title>Aula 09/10/2018 - HTML</title>
+</head>
+<body>
+
+	
+
+	<CENTER>
+	<p>Testando parágrafo<br />Testando quebra de linha<br />Testando centralização de texto</p>
+	</CENTER>
+	
+</body>
+</html>
