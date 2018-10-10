@@ -9,6 +9,7 @@
 	table,th,td{
 		border: 1px solid black;
 		border-collapse: collapse;
+		font-family: Tahoma 20px;
 	}
 
 	th,td{
@@ -18,6 +19,24 @@
 	table#t01{
 		width: 50%;
 		background-color: #f1f1c1;
+		font-family: Tahoma 20px;
+	}
+
+	img{
+		padding-right: 10px;
+		padding-left: 10px;
+		width: 70%;
+	}
+	thead{
+		background-color: #D8D8D8;
+	}
+
+	tr.campos{
+		background-color: #A9F5A9;
+	}
+
+	th.head,tr.head{
+		background-color: #D8D8D8;
 	}
 
 	</style>
@@ -31,20 +50,20 @@
 	<table id="t01">
 		
 	<thead>
-		<tr>
+		<tr class="head">
 			<th colspan="7"> PREÇOS - CARROS </th>
 		</tr>
 	</thead>
 
 	
 	<tbody>
-		<th rowspan="6">
+		<th class="head" rowspan="6">
 			NOVOS
 		</th>
 
 		
 
-		<tr>
+		<tr class="head">
 			<td>Marca</td>
 			<td>Ano</td>
 			<td>Modelo</td>
@@ -52,71 +71,75 @@
 			<td>Foto</td>
 		</tr>
 
-		<tr>
+		<tr class="campos">
 			<td>Volkswagen</td>
 			<td>2012</td>
 			<td>Gol</td>
 			<td>22.000</td>
-			<td>foto</td>
+			<td><img src="img/gol.jpeg"></td>
 		</tr> 
 
-		<tr>
-			<td>campo 0</td>
-			<td>campo 1</td>
-			<td>campo 2</td>
-			<td>campo 3</td>
-			<td>campo 4</td>
+		<tr class="campos">
+			<td>Hyundai</td>
+			<td>2015</td>
+			<td>HB20</td>
+			<td>40.000</td>
+			<td><img src="img/hb20.jpg"></td>
 		</tr> 
 
-		<tr>
-			<td>campo 0</td>
-			<td>campo 1</td>
-			<td>campo 2</td>
-			<td>campo 3</td>
-			<td>campo 4</td>
+		<tr class="campos">
+			<td>Ford</td>
+			<td>2016</td>
+			<td>Fusion</td>
+			<td>46.000</td>
+			<td><img src="img/fusion.jpg"></td>
 		</tr> 
 
-		<tr>
-			<td>campo 0</td>
-			<td>campo 1</td>
-			<td>campo 2</td>
-			<td>campo 3</td>
-			<td>campo 4</td>
+		<tr class="campos">
+			<td>Volkswagen</td>
+			<td>2009</td>
+			<td>New Beetle</td>
+			<td>16.000</td>
+			<td><img src="img/beetle.jpg"></td>
 		</tr> 
-		<th rowspan="5">
+
+
+		<th class="head" rowspan="5">
 			SEMINOVOS
 		</th>
 
-		<tr>
-			<td>campo 0</td>
-			<td>campo 1</td>
-			<td>campo 2</td>
-			<td>campo 3</td>
-			<td>campo 4</td>
+
+
+		<tr class="campos">
+			<td>Volkswagen</td>
+			<td>2010</td>
+			<td>Gol</td>
+			<td>12.000</td>
+			<td><img src="img/gol.jpeg"></td>
 		</tr> 
 
-		<tr>
-			<td>campo 0</td>
-			<td>campo 1</td>
-			<td>campo 2</td>
-			<td>campo 3</td>
-			<td>campo 4</td>
+		<tr class="campos">
+			<td>Hyundai</td>
+			<td>2012</td>
+			<td>HB20</td>
+			<td>27.000</td>
+			<td><img src="img/hb20.jpg"></td>
 		</tr> 
 
-		<tr>
-			<td>campo 0</td>
-			<td>campo 1</td>
-			<td>campo 2</td>
-			<td>campo 3</td>
-			<td>campo 4</td>
+		<tr class="campos">
+			<td>Fiat</td>
+			<td>2005</td>
+			<td>Uno</td>
+			<td>9.000</td>
+			<td><img src="img/uno.jpg"></td>
 		</tr> 
 
-		<tr>
-			<td>campo 0</td>
-			<td>campo 1</td>
-			<td>campo 2</td>
-			<td>campo 3</td>
-			<td>campo 4</td>
+		<tr class="campos">
+			<td>Volkswagen</td>
+			<td>1963</td>
+			<td>Fusca</td>
+			<td>16.000</td>
+			<td><img src="img/fusca.jpg"></td>
 		</tr> 
 	</tbody>
 			
