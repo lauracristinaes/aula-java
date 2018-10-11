@@ -2,9 +2,11 @@
 <html lang="pt-br">
 <head>
 	<title>Aula FTI 10/10/2018 - HTML - Layout</title>
-	<style type="text/css">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
 		*{
-			box-sizing: border;
+			box-sizing: border-box;
 		}
 
 		body{
@@ -13,11 +15,19 @@
 		/*Style the header*/
 
 		header{
-			background-color: #ccc;
+			background-color: #666;
 			padding: 30px;
 			text-align: center;
 			font-size: 35px;
 			color: white;
+		}
+
+		nav{
+			float: left;
+			width: 30%;
+			height: 300px;
+			background: #ccc;
+			padding: 20px;
 		}
 
 		nav ul{
@@ -25,41 +35,82 @@
 			padding: 0;
 
 		}
-		 article{}
+		 article{
+
+		 	float: left;
+		 	padding: 20px;
+		 	width: 70%;
+		 	background-color: #f1f1f1;
+		 	height: 300px;
+		 }
+
+		 section:after{
+		 	content:"";
+		 	display: table;
+		 	clear: both;
+		 }
+
+		 footer{
+		 	background-color: #777;
+		 	padding: 10px;
+		 	text-align: center;
+		 	color: white;
+
+		 }
+		 @media(max-width: 600px){
+		 	nav,article{
+		 		width: 100%;
+		 		height: auto;
+		 	}
+		 }
 
 	</style>
 </head>
 <body>
 
-<h2>Testando Estrutura de Layout</h2>
-<p></p>
+	<h2>Testando Estrutura de Layout</h2>
+	<p>Neste momento criamos um cabeçalho, duas colunas 7 caixas e um rodapé. em telas menores, as colunas serão empilhadas umas sobre as outras</p>
+	<p>11 de outubro de 2018</p>
 
-<header>
+	<header>
+		<h2>Cidades</h2>
+
+	</header>
+
+	<section>
+		<nav>
 	
+			<ul>
+				<li><a href="#">Londres</a></li>
+				<li><a href="#">Paris</a></li>
+				<li><a href="#">Tokyo</a></li>
+			</ul>
 
-</header>
+		</nav>
 
-<section></section>
-<nav></nav>
+		<article>
+			
+			<h1>Londres</h1>
+			<p>Londres é a capital da Inglaterra e é a cidade mais populosa do Reino Unido,
+			com uma área metropolitana de mais de 13 milhões de habitantes.</p>
 
-<article></article>
-<aside></aside>
+			<p>De pé no Rio Tamisa, 
+			Londres tem sido um importante assentamento por dois milênios.
+			sua história remonta a sua fundação pelos romanos,
+			que o chamaram de Londinium</p>
+
+		</article>
+	</section>
 
 
-<footer></footer>
-<details></details>
-<summary></summary>
+	<footer>
+	<p>Footer</p>
+	</footer>
 
 
-	<h1>Testando Classes</h1>
-
-
-	<h2  class="teste">Aula Java</h2>
-	<p>Aula do dia 10/10 focada em HTML</p>
-		
-
-	<p>Testando comando de classes</p>
-	
+	<aside></aside>
+	<details></details>
+	<summary></summary>
 
 </body>
 </html>
