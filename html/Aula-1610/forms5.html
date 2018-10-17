@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>Aula FTI 16/10/2018 - HTML - Formulários </title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="main.css">
+
+</head>
+<body>
+
+	<h2>Testando Formulários - Input Pattern</h2>
+	
+	<form>
+		Empresa: <input type="text" name="empresa" value="FTI" disabled="true" >
+
+		Primeiro Nome: <input type="text" name="primeiro"  placeholder="Nome" autofocus="true"><br /><br />
+		Último Nome: <input type="text" name="ultimo" max="20" placeholder="Sobrenome"><br /><br />
+		CPF <input name="cpf" required pattern="\d{3}.?\d{3}.?\d{3}-?\d{2}">
+
+		
+
+		<input type="submit" value="Salvar Rascunho" formnovalidate="true">
+		<input type="submit" value="Enviar">
+
+	</form>
+	
+
+
+
+
+</body>
+</html>
