@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<title>Aula FTI 16/10/2018 - HTML - Formulários </title>
+	<title>Aula FTI 17/10/2018 - HTML - Formulários </title>
 	<meta charset="utf-8">
 
 	<meta http-equiv="X-UA-Compatible" content="IE-edge">
@@ -28,20 +28,34 @@
 </head>
 <body>
 
+	<header>
 	<h2>Testando Formulários - Validações Customizadas - JS</h2>
-	
+	</header>
+	<br /><br /><br />
+
+
+	<div>
+
 	<form id="MyForm">
 		
 		Email:   <input id="email" oninvalid="InvalidMsg(this)" oninput="InvalidMsg(this)" name="email" type="email" required="required">
 
 		<br /><br />
 
+		<label for="escolha">Escolha:</label>
+		<select>
+			<option value="Op00">Opção 00</option>
+			<option value="Op01">Opção 01</option>
+			<option value="Op02">Opção 02</option>
+			<option value="Op03">Opção 03</option>
+		</select><br /><br /><br />
+
 		<input type="submit" value="Salvar Rascunho" formnovalidate="true">
 		<input type="submit" value="Enviar">
 
-	</form>
+	</div>
 	
-
+</section>
 
 
 
