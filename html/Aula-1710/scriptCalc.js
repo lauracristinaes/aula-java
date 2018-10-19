@@ -22,7 +22,7 @@ var n2 = document.getElementById("num2").value;
 	}else if(op == "3"){
 		resultado = n1 * n2;
 
-	}else if(op == "4"){
+	}else if(op == "4"){ 
 		resultado = n1 / n2;
 
 	}

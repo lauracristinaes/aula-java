@@ -1,0 +1,25 @@
+table#t01,th,td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 15px;
+}
+
+table#t01{
+	font-family: Tahoma;
+	width: 60%;
+	background-color: #00FF7F;
+}
+
+td#rs, tr#rs2{
+	background-color: #D3D3D3;
+}
+
+td#loja{
+	text-align: center;
+}
+
+img{
+	padding-right: 10px;
+	width: 100%;
+}
+

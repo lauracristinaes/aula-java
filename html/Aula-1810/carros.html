@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Preços de Carros</title>
+	<link rel="stylesheet" type="text/css" href="tables.css">
+
+	<script src="carros.js"></script>
+
+</head>
+<body>
+
+
+	<table id="t01">
+		<tr id="rs2">
+			<td rowspan="6">Novos</td>
+			<th>Marca</th>
+			<th>Ano</th>
+			<th>Modelo</th>
+			<th>Preço</th>
+			<th>Foto</th>
+			<th>Lance</th>
+		</tr>
+
+		<tr>
+			<td>Chevrolet</td>
+			<td>2018</td>
+			<td>Camaro</td>
+			<td>R$200.000</td>
+			<td><img src="imgcarros/camaro.jpg"></td>
+			<td><input class="lance" id="campo1" placeholder="0" value=0 onblur="myFunction()"></td>
+		</tr>
+		<tr>
+			<td>Volkswagem</td>
+			<td>2018</td>
+			<td>Gol</td>
+			<td>R$50.000</td>
+			<td><img src="imgcarros/gol.jpg"></td>
+			<td><input class="lance" id="campo2" placeholder="0" value=0 onblur="myFunction()"></td>
+		</tr>
+		<tr>
+			<td>Ford</td>
+			<td>2018</td>
+			<td>Fusion</td>
+			<td>R$200.000</td>
+			<td><img src="imgcarros/fusion.jpg"></td>
+			<td><input class="lance" id="campo3" placeholder="0" value=0 onblur="myFunction()"></td>
+		</tr>
+		<tr>
+			<td>Ferrari</td>
+			<td>2018</td>
+			<td>Enzo</td>
+			<td>R$2.000.000</td>
+			<td><img src="imgcarros/ferrari.jpg"></td>
+			<td><input class="lance" id="campo4" placeholder="0" value=0 onblur="myFunction()"></td>
+		</tr>
+		<tr>
+			<td>Fiat</td>
+			<td>2018</td>
+			<td>Uno</td>
+			<td>R$35.000</td>
+			<td><img src="imgcarros/uno.jpg"></td>
+			<td><input class="lance" id="campo5" placeholder="0" value=0 onblur="myFunction()"></td>
+		</tr>
+
+		<tr>
+			<td rowspan="5" id="rs">Seminovos</td>
+			<td>Hyunday</td>
+			<td>2018</td>
+			<td>HB20</td>
+			<td>R$35.000</td>
+			<td><img src="imgcarros/hb20.jpg"></td>
+			<td><input  class="lance" id="campo6" placeholder="0" value=0 onblur="myFunction()"></td>
+		</tr>
+		<tr>
+			<td>Volkswagem</td>
+			<td>2018</td>
+			<td>Golf</td>
+			<td>R$70.000</td>
+			<td><img src="imgcarros/golf.jpg"></td>
+			<td><input class="lance" id="campo7" placeholder="0" value=0 onblur="myFunction()"></td>
+		</tr>
+		<tr>
+			<td>Volkswagem</td>
+			<td>2018</td>
+			<td>Amarok</td>
+			<td>R$125.000</td>
+			<td><img src="imgcarros/amarok.jpg"></td>
+			<td><input class="lance" id="campo8" placeholder="0" value=0 onblur="myFunction()"></td>
+		</tr>
+		<tr>
+			<td>Fiat</td>
+			<td>2018</td>
+			<td>Argo</td>
+			<td>R$80.000</td>
+			<td><img src="imgcarros/argo.jpg"></td>
+			<td><input class="lance" id="campo9" placeholder="0" value=0 onblur="myFunction()"></td>
+		</tr>
+		<tr>
+			<td>Fiat</td>
+			<td>2018</td>
+			<td>Cronos</td>
+			<td>R$120.000</td>
+			<td><img src="imgcarros/cronos.jpg"></td>
+			<td><input class="lance" id="campo10" placeholder="0" value=0 onblur="myFunction()"></td>
+		</tr>
+		<tr colspan="7">
+			<td>Total: <input id="resultado" type="text""></td>
+		</tr>
+
+	</table>
+</body>
+</html>
