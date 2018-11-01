@@ -1,13 +1,14 @@
 package dao;
 
 import java.sql.Connection;
+
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import javax.naming.NamingException;
 
 
@@ -46,9 +47,11 @@ public void cadastrarTarefa(Tarefa tarefa) {
 			stmt.setString(1, String.valueOf(tarefa.getDescricao()));
 			stmt.setBoolean(2, tarefa.isFinalizado());
 			
-			Calendar vdata = Calendar.getInstance(); //alterar para pegar data da tarefa
-			java.sql.Date date =new java.sql.Date(vdata.getTime().getTime() );
+//			Calendar vdata = Calendar.getInstance(); //alterar para pegar data da tarefa
+//			java.sql.Date date =new java.sql.Date(vdata.getTime().getTime() );
 			
+			java.util.Date vdata = tarefa.getDataFinalizacao();
+			java.sql.Date date =new java.sql.Date(vdata.getTime());
 			stmt.setDate(3, date);
 			
 
@@ -109,6 +112,41 @@ public List<Tarefa> consultarListaTarefa() {
 	return listaTarefa;
 }
 
+public void deletarTarefa(Long id) {
+	Connection conn = null;
+	PreparedStatement stmt = null;
+	ResultSet rs = null;
+
+	try {
+		conn = db.obterConexao();
+		conn.setAutoCommit(false);
+
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append("DELETE FROM tarefas WHERE ID = ?");
+	
+
+		stmt = conn.prepareStatement(sql.toString());
+		stmt.setLong(1, id);
+
+		stmt.execute();
+		conn.commit();
+	} catch (SQLException e) {
+		if (conn != null) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				System.out.println("Erro no método deletarTarefa - rollback");
+			}
+		}
+		System.out.println("Erro no método deletarTarefa");
+		e.printStackTrace();
+	} finally {
+		db.finalizaObjetos(rs, stmt, conn);
+	}
+	
+}
+
 public void alterarTarefa(Tarefa tarefa) {
 	Connection conn = null;
 	PreparedStatement stmt = null;
@@ -127,8 +165,8 @@ public void alterarTarefa(Tarefa tarefa) {
 		stmt.setString(1, tarefa.getDescricao());
 		stmt.setBoolean(2, tarefa.isFinalizado());
 		
-		Calendar vdata = tarefa.getDataFinalizacao();
-		java.sql.Date date =new java.sql.Date(vdata.getTime().getTime() );
+		java.util.Date vdata = tarefa.getDataFinalizacao();
+		java.sql.Date date =new java.sql.Date(vdata.getTime());
 		
 		stmt.setDate(3, date);
 		stmt.setLong(4, tarefa.getId());

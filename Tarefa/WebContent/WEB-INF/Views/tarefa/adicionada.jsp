@@ -8,7 +8,7 @@
 </head>
 <body>
 		Nova tarefa adicionada	com	sucesso! <br />
-		Tarefa: ${tarefa}
+		Tarefa: ${tarefa.descricao}
 		
 </body>
 </html>

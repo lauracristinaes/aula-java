@@ -1,6 +1,7 @@
 package model;
 
-import java.util.Calendar;
+
+import java.util.Date;
 
 import javax.validation.constraints.Size;
 
@@ -12,7 +13,8 @@ public class Tarefa {
 	@Size(min=5)
 	private	String descricao;
 	private boolean	finalizado;
-	private	Calendar dataFinalizacao;
+	private String dtFinalizacao;
+	private	Date dataFinalizacao;
 	public Long getId() {
 		return id;
 	}
@@ -31,11 +33,17 @@ public class Tarefa {
 	public void setFinalizado(boolean finalizado) {
 		this.finalizado = finalizado;
 	}
-	public Calendar getDataFinalizacao() {
+	public Date getDataFinalizacao() {
 		return dataFinalizacao;
 	}
-	public void setDataFinalizacao(Calendar dataFinalizacao) {
+	public void setDataFinalizacao(Date dataFinalizacao) {
 		this.dataFinalizacao = dataFinalizacao;
+	}
+	public String getDtFinalizacao() {
+		return dtFinalizacao;
+	}
+	public void setDtFinalizacao(String dtFinalizacao) {
+		this.dtFinalizacao = dtFinalizacao;
 	}
 	
 	

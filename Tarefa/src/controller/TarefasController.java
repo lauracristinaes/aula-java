@@ -1,6 +1,12 @@
 package controller;
 
 import javax.validation.Valid;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -17,6 +23,12 @@ import model.Tarefa;
 @Controller
 public class TarefasController {
 	
+	@RequestMapping("projetoTarefas")
+	public	String	index() {
+			
+			
+	return "tarefa/index";
+	}
 	
 	@RequestMapping("novaTarefa")
 	public	String	form() {
@@ -27,7 +39,7 @@ public class TarefasController {
 
 	
 	@RequestMapping("adicionaTarefa")
-	public	String	adiciona(@Valid Tarefa	tarefa, BindingResult result) {
+	public	String	adiciona(@Valid Tarefa	tarefa, BindingResult result) throws ParseException {
 		System.out.println("entrou aqui");
 		//verifica se há erros de validação no formulário geral
 //		if(result.hasErrors())	{
@@ -38,9 +50,17 @@ public class TarefasController {
 		//verifica se há erros de validação no formulário, especificamente no campo descrição
 		if(result.hasFieldErrors("descricao")){
 			System.out.println("entrou no erro especifico");
-			return "cafe";
+			return "";
 		}
-
+		
+		System.out.println("A data que veio do form é: " + tarefa.getDtFinalizacao());
+		
+		 Calendar cal = GregorianCalendar.getInstance();
+	     SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+	     String d = df.format(cal.getTime());
+	     Date d2 = df.parse(d);
+	        
+		tarefa.setDataFinalizacao(d2);
 		TarefaDAO dao = new TarefaDAO();
 		dao.cadastrarTarefa(tarefa);
 		
@@ -58,16 +78,22 @@ public class TarefasController {
 					return	"tarefa/lista";
 
 	}
-
-
 	
-/*Testando passagem de parametros entre paginas*/
-	@RequestMapping("filtrar")
-	public String fazerCafe(@RequestParam("marca") String cafe, Model model) {
-		model.addAttribute("marca", cafe);
-		
-		return "final";
+	@RequestMapping("deletaTarefa")
+	public	String deleta(Long id, Model model) {
+					TarefaDAO dao = new TarefaDAO();
+					
+					System.out.println("valor do id = " + id);
+					
+					dao.deletarTarefa(id);	
+					
+					System.out.println("deletou a tarefa");
+					//model.addAttribute("tarefas", tarefas);
+					
+					return	"redirect:listaTarefas";
+
 	}
+
 	
 
 }

@@ -22,14 +22,15 @@ public class Pessoa {
 	public int cpf;
 	public String nome;
 	public String sexo; //F ou M
-	//public Date dtNasc;
+	//private java.sql.Date dtNasc;
+	public Date dtNasc;
 	
-	public Pessoa(int cpf, String nome, String sexo) {
+	public Pessoa(int cpf, String nome, String sexo, Date dt) {
 		
 		this.cpf = cpf;
 		this.nome = nome;
 		this.sexo = sexo;
-		//this.dtNasc = dt;
+		this.dtNasc = dt;
 		
 	}
 	
@@ -56,7 +57,7 @@ public class Pessoa {
 			
 			
 	
-			String sql = "INSERT INTO pessoa (cpf, nome, sexo) values (?, ?, ?);";
+			String sql = "INSERT INTO pessoa (cpf, nome, sexo, dtNasc) values (?, ?, ?, ?);";
 			
 			
 			
@@ -67,7 +68,10 @@ public class Pessoa {
 			stmt.setInt(1, this.cpf);
 			stmt.setString(2, this.nome);
 			stmt.setString(3, this.sexo);
-			//sqlPrepare.setDate(4, (java.sql.Date) this.dtNasc);
+			
+			java.sql.Date d = new java.sql.Date(dtNasc.getTime());
+			stmt.setDate(4, d);
+			//stmt.setDate(4, (java.sql.Date) this.dtNasc);
 				
 			System.out.println("ok até aqui");
 			System.out.println("meu stmt é: " + stmt);
@@ -104,10 +108,11 @@ public class Pessoa {
 		int cpf = 000;
 		String nome = "teste";
 		String sexo = "F";
-		//SimpleDateFormat formato = new SimpleDateFormat( "dd/MM/yyyy");
-		//Date dt = formato.parse("23/11/2015");
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		String strDt = "2015-11-15";
+		Date dt = formato.parse(strDt);
 		
-		Pessoa pessoa = new Pessoa(cpf, nome, sexo);
+		Pessoa pessoa = new Pessoa(cpf, nome, sexo, dt);
 		pessoa.AddBanco();
 	}
 }

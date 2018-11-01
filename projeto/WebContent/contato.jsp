@@ -4,9 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Cadastro de Pessoa</title>
 </head>
 <body>
+	<form	action="adicionaContato">
+		CPF: <input type ="text" name = "CPF" /> <br	/>
+		Nome:	<input	type="text" name="nome"	/><br	/>
+		Sexo:	<input	type="text" name="sexo"	/><br	/>
+		Data	Nascimento:	<input	type="text" name="dtNasc"	/><br	/>
+		<input	type="submit" value="Gravar"	/>
+	</form>
+	<% String nome = "teste"; %>
+	<% System.out.println(nome); %>
 
 </body>
 </html>
