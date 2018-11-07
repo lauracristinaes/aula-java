@@ -1,25 +1,24 @@
 package dao;
 
 import java.sql.Connection;
-
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+
 import javax.naming.NamingException;
 
+import model.Aluno;
 
-import model.Tarefa;
 
 
-public class TarefaDAO {
+public class AlunoDao {
 	
-	private BancoDados db = null;
+private BancoDados db = null;
 	
-	public TarefaDAO() {
+	public AlunoDao() {
 		try {
 			db = new BancoDados("aulajava");
 		} catch (NamingException e) {
@@ -27,7 +26,7 @@ public class TarefaDAO {
 		}
 	}
 	
-public void cadastrarTarefa(Tarefa tarefa) {
+public void cadastrarAluno(Aluno aluno) {
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -39,20 +38,20 @@ public void cadastrarTarefa(Tarefa tarefa) {
 
 			StringBuffer sql = new StringBuffer();
 			
-			sql.append("INSERT INTO  tarefas (descricao, finalizado, dataFinalizacao)");
+			sql.append("INSERT INTO  Alunos (descricao, finalizado, dataFinalizacao)");
 			sql.append("VALUES(?,?,?)");
 
 			stmt = conn.prepareStatement(sql.toString());
 
-			stmt.setString(1, String.valueOf(tarefa.getDescricao()));
-			stmt.setBoolean(2, tarefa.isFinalizado());
+			//stmt.setString(1, String.valueOf(Aluno.getDescricao()));
+			//stmt.setBoolean(2, Aluno.isFinalizado());
 			
-//			Calendar vdata = Calendar.getInstance(); //alterar para pegar data da tarefa
+//			Calendar vdata = Calendar.getInstance(); //alterar para pegar data da Aluno
 //			java.sql.Date date =new java.sql.Date(vdata.getTime().getTime() );
 			
-			java.util.Date vdata = tarefa.getDataFinalizacao();
-			java.sql.Date date =new java.sql.Date(vdata.getTime());
-			stmt.setDate(3, date);
+			//java.util.Date vdata = Aluno.getDataFinalizacao();
+			//java.sql.Date date =new java.sql.Date(vdata.getTime());
+			//stmt.setDate(3, date);
 			
 
 			stmt.execute();
@@ -62,22 +61,22 @@ public void cadastrarTarefa(Tarefa tarefa) {
 				try {
 					conn.rollback();
 				} catch (SQLException e1) {
-					System.out.println("Erro no método cadastrarTarefa - rollback");
+					System.out.println("Erro no método cadastrarAluno - rollback");
 				}
 			}
-			System.out.println("Erro no método cadastrarTarefa");
+			System.out.println("Erro no método cadastrarAluno");
 			e.printStackTrace();
 		} finally {
 			db.finalizaObjetos(rs, stmt, conn);
 		}
 		
-		System.out.println("Tarefa: " + tarefa.getDescricao() + " com data de finalização " + tarefa.getDataFinalizacao() + " com status: " + tarefa.isFinalizado() + " cadastrado com sucesso!");
+		System.out.println("Aluno: " + aluno.getName() + "cadastrado com sucesso!");
 	}
 
 
-public List<Tarefa> consultarListaTarefa() {
+public List<Aluno> consultarListaAluno() {
 
-	List<Tarefa> listaTarefa = new ArrayList<Tarefa>();
+	List<Aluno> listaAluno = new ArrayList<Aluno>();
 
 	Connection conn = null;
 	PreparedStatement stmt = null;
@@ -87,32 +86,32 @@ public List<Tarefa> consultarListaTarefa() {
 		conn = db.obterConexao();
 
 		String sql = "SELECT * "
-				+ "FROM  tarefas";
+				+ "FROM  Alunos";
 
 		stmt = conn.prepareStatement(sql.toString());
 
 		rs = stmt.executeQuery();
 
 		while (rs.next()) {
-			Tarefa tarefa = new Tarefa();
-			tarefa.setId(rs.getLong("id")); 
-			tarefa.setDescricao(rs.getString("descricao"));
-			tarefa.setFinalizado(rs.getBoolean("finalizado"));
-			//tarefa.setDataFinalizacao(rs.getDate("dataFinalizacao");
+			Aluno aluno = new Aluno();
+			//aluno.setId(rs.getLong("id")); 
+			//aluno.setDescricao(rs.getString("descricao"));
+			//aluno.setFinalizado(rs.getBoolean("finalizado"));
+			//Aluno.setDataFinalizacao(rs.getDate("dataFinalizacao");
 			
-			listaTarefa.add(tarefa);
+			listaAluno.add(aluno);
 		}
 
 	} catch (SQLException e) {
-		System.out.println("Erro no método consultarListaTarefa");
+		System.out.println("Erro no método consultarListaAluno");
 		e.printStackTrace();
 	} finally {
 		db.finalizaObjetos(rs, stmt, conn);
 	}
-	return listaTarefa;
+	return listaAluno;
 }
 
-public void deletarTarefa(Long id) {
+public void deletarAluno(Long id) {
 	Connection conn = null;
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
@@ -123,7 +122,7 @@ public void deletarTarefa(Long id) {
 
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("DELETE FROM tarefas WHERE ID = ?");
+		sql.append("DELETE FROM Alunos WHERE ID = ?");
 	
 
 		stmt = conn.prepareStatement(sql.toString());
@@ -136,10 +135,10 @@ public void deletarTarefa(Long id) {
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				System.out.println("Erro no método deletarTarefa - rollback");
+				System.out.println("Erro no método deletarAluno - rollback");
 			}
 		}
-		System.out.println("Erro no método deletarTarefa");
+		System.out.println("Erro no método deletarAluno");
 		e.printStackTrace();
 	} finally {
 		db.finalizaObjetos(rs, stmt, conn);
@@ -158,7 +157,7 @@ public void finaliza(long id) {
 
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("UPDATE tarefas SET finalizado = ?, dataFinalizacao = ?");
+		sql.append("UPDATE Alunos SET finalizado = ?, dataFinalizacao = ?");
 		sql.append("WHERE id = ?;");
 
 		stmt = conn.prepareStatement(sql.toString());
@@ -177,10 +176,10 @@ public void finaliza(long id) {
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				System.out.println("Erro no método finalizarTarefa - rollback");
+				System.out.println("Erro no método finalizarAluno - rollback");
 			}
 		}
-		System.out.println("Erro no método finalizarTarefa");
+		System.out.println("Erro no método finalizarAluno");
 		e.printStackTrace();
 	} finally {
 		db.finalizaObjetos(rs, stmt, conn);
@@ -188,7 +187,7 @@ public void finaliza(long id) {
 	
 }
 
-public void alterarTarefa(Tarefa tarefa) {
+public void alterarAluno(Aluno aluno) {
 	Connection conn = null;
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
@@ -199,18 +198,18 @@ public void alterarTarefa(Tarefa tarefa) {
 
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("UPDATE tarefas SET descricao = ?, finalizado = ?, dataFinalizacao = ?");
+		sql.append("UPDATE Alunos SET descricao = ?, finalizado = ?, dataFinalizacao = ?");
 		sql.append("WHERE id = ?;");
 
 		stmt = conn.prepareStatement(sql.toString());
-		stmt.setString(1, tarefa.getDescricao());
-		stmt.setBoolean(2, tarefa.isFinalizado());
+		//stmt.setString(1, aluno.getDescricao());
+		//stmt.setBoolean(2, aluno.isFinalizado());
 		
-		java.util.Date vdata = tarefa.getDataFinalizacao();
-		java.sql.Date date =new java.sql.Date(vdata.getTime());
+		//java.util.Date vdata = aluno.getDataFinalizacao();
+		//java.sql.Date date =new java.sql.Date(vdata.getTime());
 		
-		stmt.setDate(3, date);
-		stmt.setLong(4, tarefa.getId());
+		//stmt.setDate(3, date);
+		//stmt.setLong(4, aluno.getId());
 
 		stmt.execute();
 		conn.commit();
@@ -219,14 +218,15 @@ public void alterarTarefa(Tarefa tarefa) {
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
-				System.out.println("Erro no método alterarTarefa - rollback");
+				System.out.println("Erro no método alterarAluno - rollback");
 			}
 		}
-		System.out.println("Erro no método alterarTarefa");
+		System.out.println("Erro no método alterarAluno");
 		e.printStackTrace();
 	} finally {
 		db.finalizaObjetos(rs, stmt, conn);
 	}
 }	
+
 
 }

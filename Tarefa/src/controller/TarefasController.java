@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import java.text.ParseException;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.portlet.ModelAndView;
 
 import dao.TarefaDAO;
@@ -78,6 +80,15 @@ public class TarefasController {
 					return	"tarefa/lista";
 
 	}
+	
+	@ResponseBody
+	@RequestMapping("finalizaTarefa")
+	public	void	finaliza(Long	id) {
+			TarefaDAO	dao	=	new	TarefaDAO();
+			dao.finaliza(id);
+	}
+
+
 	
 	@RequestMapping("deletaTarefa")
 	public	String deleta(Long id, Model model) {

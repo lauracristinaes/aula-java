@@ -9,7 +9,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script	type="text/javascript">
+	function finalizaAgora(id) {
+		$.get("finalizaTarefa?id="	+	id,	function(dadosDeResposta) {
+			alert("Tarefa	Finalizada!");
+		});
+	}
+	</script>
 	<title>Lista de Tarefas</title>
 	</head>
 	<body>
@@ -32,6 +39,9 @@
 		        <td>${tarefa.descricao}</td>
 		        <c:if test="${tarefa.finalizado eq false}">
 	    			<td>Não finalizado</td>
+	    			<td><a	href="#" onclick="finalizaAgora(${tarefa.id})">
+								Finalizar agora
+				</a></td>
 	   			</c:if>
 	   			<c:if test="${tarefa.finalizado eq true}">
 	    			<td>Finalizado</td>
