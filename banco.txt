@@ -1,0 +1,33 @@
+	create	table	pessoas	(
+								id	BIGINT	NOT	NULL	AUTO_INCREMENT,
+								nome	VARCHAR(255),
+								cpf  integer,
+								sexo boolean,
+								email	VARCHAR(255),
+								endereco	VARCHAR(255),
+								telefone VARCHAR(15),
+								dataNascimento	DATE,
+								primary	key	(id)
+				);
+
+	create	table	alunos	(
+								id	BIGINT	NOT	NULL	AUTO_INCREMENT,
+								id_pessoa BIGINT not null,
+								matricula  integer,
+								curso  integer,
+								primary	key	(id),
+								foreing key (id_pessoa) references pessoas(id)
+				);
+	create	table	funcionarios	(
+								id	BIGINT	NOT	NULL	AUTO_INCREMENT,
+								id_pessoa BIGINT not null,
+								cod_cadastro  integer,
+								cargo  integer,
+								salario double,
+								valor_alimentacao,
+								valor_refeicao,
+								valor_transporte,
+								filhos integer,
+								primary	key	(id),
+								foreing key (id_pessoa) references pessoas(id)
+				);

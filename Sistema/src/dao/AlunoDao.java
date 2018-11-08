@@ -146,46 +146,6 @@ public void deletarAluno(Long id) {
 	
 }
 
-public void finaliza(long id) {
-	Connection conn = null;
-	PreparedStatement stmt = null;
-	ResultSet rs = null;
-	
-	try {
-		conn = db.obterConexao();
-		conn.setAutoCommit(false);
-
-		StringBuffer sql = new StringBuffer();
-		
-		sql.append("UPDATE Alunos SET finalizado = ?, dataFinalizacao = ?");
-		sql.append("WHERE id = ?;");
-
-		stmt = conn.prepareStatement(sql.toString());
-		stmt.setBoolean(1, true);
-		
-		java.util.Date vdata = new Date(System.currentTimeMillis());
-		java.sql.Date date =new java.sql.Date(vdata.getTime());
-		
-		stmt.setDate(2, date);
-		stmt.setLong(3, id);
-
-		stmt.execute();
-		conn.commit();
-	} catch (SQLException e) {
-		if (conn != null) {
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-				System.out.println("Erro no método finalizarAluno - rollback");
-			}
-		}
-		System.out.println("Erro no método finalizarAluno");
-		e.printStackTrace();
-	} finally {
-		db.finalizaObjetos(rs, stmt, conn);
-	}
-	
-}
 
 public void alterarAluno(Aluno aluno) {
 	Connection conn = null;
