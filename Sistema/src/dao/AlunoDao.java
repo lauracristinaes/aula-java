@@ -28,6 +28,7 @@ private BancoDados db = null;
 	
 public void cadastrarAluno(Aluno aluno) {
 		
+		System.out.println("entrou no dao do aluno");
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -38,21 +39,21 @@ public void cadastrarAluno(Aluno aluno) {
 
 			StringBuffer sql = new StringBuffer();
 			
-			sql.append("INSERT INTO  Alunos (descricao, finalizado, dataFinalizacao)");
-			sql.append("VALUES(?,?,?)");
+			sql.append("INSERT INTO  Alunos (nome, cpf, dataNascimento, telefone, endereco, email)");
+			sql.append("VALUES(?,?,?,?,?,?)");
 
 			stmt = conn.prepareStatement(sql.toString());
 
-			//stmt.setString(1, String.valueOf(Aluno.getDescricao()));
-			//stmt.setBoolean(2, Aluno.isFinalizado());
+			stmt.setString(1, aluno.getNome());
+			stmt.setInt(2, aluno.getCpf());
 			
-//			Calendar vdata = Calendar.getInstance(); //alterar para pegar data da Aluno
-//			java.sql.Date date =new java.sql.Date(vdata.getTime().getTime() );
+			java.util.Date vdata = aluno.getDtNasc();
+			java.sql.Date date =new java.sql.Date(vdata.getTime());
+			stmt.setDate(3, date);
 			
-			//java.util.Date vdata = Aluno.getDataFinalizacao();
-			//java.sql.Date date =new java.sql.Date(vdata.getTime());
-			//stmt.setDate(3, date);
-			
+			stmt.setString(4, aluno.getTelefone());
+			stmt.setString(5, aluno.getEndereco());
+			stmt.setString(6, aluno.getEmail());
 
 			stmt.execute();
 			conn.commit();
@@ -70,11 +71,13 @@ public void cadastrarAluno(Aluno aluno) {
 			db.finalizaObjetos(rs, stmt, conn);
 		}
 		
-		System.out.println("Aluno: " + aluno.getName() + "cadastrado com sucesso!");
+		System.out.println("Aluno: " + aluno.getNome() + "cadastrado com sucesso!");
 	}
 
 
 public List<Aluno> consultarListaAluno() {
+	
+	System.out.println("entrou no dao alunos");
 
 	List<Aluno> listaAluno = new ArrayList<Aluno>();
 
@@ -83,10 +86,10 @@ public List<Aluno> consultarListaAluno() {
 	ResultSet rs = null;
 
 	try {
+		System.out.println("entrou no banco");
 		conn = db.obterConexao();
 
-		String sql = "SELECT * "
-				+ "FROM  Alunos";
+		String sql = "SELECT * FROM  Alunos";
 
 		stmt = conn.prepareStatement(sql.toString());
 
@@ -98,6 +101,16 @@ public List<Aluno> consultarListaAluno() {
 			//aluno.setDescricao(rs.getString("descricao"));
 			//aluno.setFinalizado(rs.getBoolean("finalizado"));
 			//Aluno.setDataFinalizacao(rs.getDate("dataFinalizacao");
+			System.out.println("setou um aluno");
+			
+			aluno.setId(rs.getLong("id"));
+			aluno.setNome(rs.getString("nome"));
+			aluno.setCpf(rs.getInt("cpf"));
+			aluno.setDtNasc(rs.getDate("dataNascimento"));
+			aluno.setEmail(rs.getString("email"));
+			
+			aluno.setEndereco(rs.getString("endereco"));
+			aluno.setTelefone(rs.getString("telefone"));
 			
 			listaAluno.add(aluno);
 		}
@@ -158,7 +171,7 @@ public void alterarAluno(Aluno aluno) {
 
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("UPDATE Alunos SET descricao = ?, finalizado = ?, dataFinalizacao = ?");
+		sql.append("UPDATE Alunos SET nome = ?, cpf = ?, dataNascimento = ?, telefone = ?, endereco = ?, email = ? "); // 
 		sql.append("WHERE id = ?;");
 
 		stmt = conn.prepareStatement(sql.toString());

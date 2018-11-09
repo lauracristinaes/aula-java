@@ -12,11 +12,16 @@
 
 	create	table	alunos	(
 								id	BIGINT	NOT	NULL	AUTO_INCREMENT,
-								id_pessoa BIGINT not null,
+								nome	VARCHAR(255),
+								cpf  integer,
+								sexo boolean,
+								email	VARCHAR(255),
+								endereco	VARCHAR(255),
+								telefone VARCHAR(15),
+								dataNascimento	DATE,
 								matricula  integer,
 								curso  integer,
-								primary	key	(id),
-								foreing key (id_pessoa) references pessoas(id)
+								primary	key	(id)
 				);
 	create	table	funcionarios	(
 								id	BIGINT	NOT	NULL	AUTO_INCREMENT,
@@ -31,3 +36,9 @@
 								primary	key	(id),
 								foreing key (id_pessoa) references pessoas(id)
 				);
+
+
+<td><fmt:formatDate value="${aluno.dtNasc.time}" pattern="dd/MM/yyyy"/></td>
+
+
+		      	<td><a href="deletaTarefa?id=${aluno.id}" class="btn btn-info" role="button">Deletar</a></td>

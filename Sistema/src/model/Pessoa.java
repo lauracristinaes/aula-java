@@ -4,7 +4,9 @@ import java.util.Date;
 
 public class Pessoa {
 	
-	private String name;
+	private	Long id;
+	
+	private String nome;
 	private int cpf;
 	private Date dtNasc;
 	private String endereco;
@@ -14,11 +16,11 @@ public class Pessoa {
 	
 	
 	
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String name) {
+		this.nome = name;
 	}
 	public int getCpf() {
 		return cpf;
@@ -57,6 +59,12 @@ public class Pessoa {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 

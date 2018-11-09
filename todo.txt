@@ -1,0 +1,4 @@
+-validação do form em jquery
+-validação no controler
+-autenticação de usuário
+-editar um aluno no mesmo form

@@ -68,7 +68,7 @@ public void cadastrarPessoa(Pessoa pessoa) {
 			db.finalizaObjetos(rs, stmt, conn);
 		}
 		
-		System.out.println("Pessoa: " + pessoa.getName() + "cadastrado com sucesso!");
+		System.out.println("Pessoa: " + pessoa.getNome() + "cadastrado com sucesso!");
 	}
 
 
