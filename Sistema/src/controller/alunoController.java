@@ -7,8 +7,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -55,7 +53,6 @@ public class alunoController {
 	        
 		return "addAluno";
 		
-		
 	}
 	
 	@RequestMapping("listaAlunos")
@@ -67,6 +64,8 @@ public class alunoController {
 					return	"listAlunos";
 
 	}
+	
+	
 	
 	
 }

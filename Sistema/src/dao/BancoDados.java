@@ -30,7 +30,7 @@ public class BancoDados {
             ds.setPortNumber(3306);
             ds.setDatabaseName("aulajava?zeroDateTimeBehavior=CONVERT_TO_NULL");
             ds.setUser("root");
-            ds.setPassword("java");
+            ds.setPassword("root");
             dataSource = ds;
         }
     }
