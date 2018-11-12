@@ -8,6 +8,14 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 			
 		<title>Adicionar Aluno</title>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+		<script	type="text/javascript">
+		    $(document).ready(function () { 
+		        var $Cpf = $("#cpf");
+		        $Cpf.mask('000.000.000-00', {reverse: true});
+		    });
+		</script>
 
 	</head>
 	<body>
@@ -21,13 +29,13 @@
 	  
 			 <div class="form-group col-md-4">
 			 	<label for="sexo">Sexo:</label>
-				<label class="radio-inline"><input type="radio" name="sexo" checked>Masculino</label>
-				<label class="radio-inline"><input type="radio" name="sexo">Feminino</label>
+				<label class="radio-inline"><input type="radio" name="sexo" value="0" checked>Masculino</label>
+				<label class="radio-inline"><input type="radio" name="sexo" value="1">Feminino</label>
 			</div>
 	
 			 <div class="form-group col-md-6">
 			    <label for="cpf">CPF:</label>
-			    <input type="number" class="form-control" name="cpf" placeholder="000.000.000-00">
+			    <input type="text" class="form-control" id= "cpf" name="cpf" placeholder="000.000.000-00">
 			 </div>
 	
 			 <div class="form-group col-md-6">
@@ -60,13 +68,13 @@
 
 
 			<div class="form-group col-md-4">
-				<label for="inputEstado">Curso</label>
-				 <select name="inputEstado" class="form-control">
-				    <option selected>Java Web</option>
-				    <option>Cobol</option>
-				    <option>.NET</option>
-				    <option>Redes</option>
-				    <option>Phyton</option>
+				<label for="curso">Curso</label>
+				 <select name="curso" class="form-control">
+				    <option selected value = 1>Java Web</option>
+				    <option value = 2>Cobol</option>
+				    <option value = 3>.NET</option>
+				    <option value = 4>Redes</option>
+				    <option value = 5>Phyton</option>
 				</select>
 			</div>
 

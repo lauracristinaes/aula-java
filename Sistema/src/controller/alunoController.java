@@ -31,32 +31,31 @@ public class alunoController {
 	
 	@RequestMapping("adicionaAluno")
 	public	String	adiciona(Aluno	aluno, BindingResult result) throws ParseException {
-		System.out.println("entrou aqui");
-		//verifica se há erros de validação no formulário geral
-//		if(result.hasErrors())	{
-//			System.out.println("entrou no erro geral");
-//			return "tarefa/addTarefa";
-//		}
+		System.out.println("entrou no controller aluno");
 
-		//verifica se há erros de validação no formulário, especificamente no campo descrição
-//		if(result.hasFieldErrors("descricao")){
-//			System.out.println("entrou no erro especifico");
-//			return "";
-//		}
-//		
-		System.out.println("A data que veio do form é: " + aluno.getDtNasc());
+		
+		System.out.println("O curso que veio do form é: " + aluno.getCurso());
 		
 		 Calendar cal = GregorianCalendar.getInstance();
 	     SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 	     String d = df.format(cal.getTime());
 	     Date d2 = df.parse(d);
 	     aluno.setDtNasc(d2);
+	     
+	     if(aluno.validate()) {
+	    	 AlunoDao dao = new AlunoDao();
+	    	 dao.cadastrarAluno(aluno);
+	    	 return "alunoadicionado";
+	     }
+	     
+	     System.out.println("erros encontrados: ");
+	     for(String erros: aluno.erro) {
+	    	 System.out.println(" " + erros + " ");
+	     }
 	        
-		AlunoDao dao = new AlunoDao();
-		dao.cadastrarAluno(aluno);
+		return "addAluno";
 		
-		//model.addAttribute("tarefa", tarefa.getDescricao());
-		return "alunoadicionado";
+		
 	}
 	
 	@RequestMapping("listaAlunos")

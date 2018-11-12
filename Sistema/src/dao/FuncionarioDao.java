@@ -67,7 +67,7 @@ public void cadastrarFuncionario(Funcionario funcionario) {
 			db.finalizaObjetos(rs, stmt, conn);
 		}
 		
-		System.out.println("Funcionario: " + funcionario.getName() + "cadastrado com sucesso!");
+		//System.out.println("Funcionario: " + funcionario.getName() + "cadastrado com sucesso!");
 	}
 
 

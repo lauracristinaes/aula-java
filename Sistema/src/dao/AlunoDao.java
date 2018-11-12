@@ -45,7 +45,7 @@ public void cadastrarAluno(Aluno aluno) {
 			stmt = conn.prepareStatement(sql.toString());
 
 			stmt.setString(1, aluno.getNome());
-			stmt.setInt(2, aluno.getCpf());
+			stmt.setString(2, aluno.getCpf());
 			
 			java.util.Date vdata = aluno.getDtNasc();
 			java.sql.Date date =new java.sql.Date(vdata.getTime());
@@ -105,7 +105,7 @@ public List<Aluno> consultarListaAluno() {
 			
 			aluno.setId(rs.getLong("id"));
 			aluno.setNome(rs.getString("nome"));
-			aluno.setCpf(rs.getInt("cpf"));
+			aluno.setCpf(rs.getString("cpf"));
 			aluno.setDtNasc(rs.getDate("dataNascimento"));
 			aluno.setEmail(rs.getString("email"));
 			
