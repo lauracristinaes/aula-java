@@ -1,5 +1,8 @@
 package model;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.InputMismatchException;
 
@@ -31,10 +34,37 @@ public class Pessoa {
 	}
 
 	public Date getDtNasc() {
+		
 		return dtNasc;
 	}
-	public void setDtNasc(Date dtNasc) {
+	
+public String getDtNascString() {
+	
+	SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+	String dtN;
+	dtN = date.format(dtNasc);
+		
+		return dtN;
+	}
+	
+	public void setDtNascDate(Date dtNasc) {
+		System.out.println("recebeu data date:" + dtNasc);
 		this.dtNasc = dtNasc;
+	}
+	
+	public void setDtNasc(String dtString) {
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		date.setLenient(false); // data inválida! Não vai parsear
+		Date dtN = new Date();
+		System.out.println("recebeu data string: " + dtString);
+		try {
+			System.out.println("entrou no try ");
+			dtN = date.parse(dtString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.dtNasc = dtN;
 	}
 	public String getEndereco() {
 		return endereco;

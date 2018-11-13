@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 			
 		<title>Adicionar Aluno</title>
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 		<script	type="text/javascript">
 		    $(document).ready(function () { 
@@ -40,7 +40,7 @@
 	
 			 <div class="form-group col-md-6">
 			    <label for="dtNasc">Data de Nascimento:</label>
-			    <input type="date" class="form-control" name="dtNasc">
+			    <input type="date" class="form-control" name="dtNasc" value="">
 			 </div>
 	
 	

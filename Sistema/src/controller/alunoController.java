@@ -30,15 +30,15 @@ public class alunoController {
 	@RequestMapping("adicionaAluno")
 	public	String	adiciona(Aluno	aluno, BindingResult result) throws ParseException {
 		System.out.println("entrou no controller aluno");
-
 		
-		System.out.println("O curso que veio do form é: " + aluno.getCurso());
 		
-		 Calendar cal = GregorianCalendar.getInstance();
-	     SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-	     String d = df.format(cal.getTime());
-	     Date d2 = df.parse(d);
-	     aluno.setDtNasc(d2);
+		System.out.println("A data que veio do form é: " + aluno.getDtNasc());
+		
+		 //Calendar cal = GregorianCalendar.getInstance();
+	    // SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+	    // String d = df.format(cal.getTime());
+	     //Date d2 = df.parse(d);
+	    // aluno.setDtNasc(d2);
 	     
 	     if(aluno.validate()) {
 	    	 AlunoDao dao = new AlunoDao();

@@ -20,11 +20,13 @@ public class Aluno extends Pessoa{
 		this.matricula = matricula;
 	}
 
-	public int getCurso() {
-		return curso;
+	public String getCurso() {
+		
+		return Integer.toString(curso);
 	}
-	public void setCurso(int curso) {
-		this.curso = curso;
+	public void setCurso(String curso) {
+		
+		this.curso = Integer.parseInt(curso);
 	}
 	
 	public boolean validate() {
@@ -71,7 +73,7 @@ public class Aluno extends Pessoa{
 		
 		//curso: obrigatório - válido (1-5)
 		
-		if(this.getCurso() == 0) {
+		if(this.getCurso() == null) {
 			erro.add("curso é obrigatório");
 					
 		} 
