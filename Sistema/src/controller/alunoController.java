@@ -32,6 +32,7 @@ public class alunoController {
 	@RequestMapping("adicionaAluno")
 	public	String	adiciona(Aluno	aluno, @RequestParam("novo") String novo, @RequestParam("id") String id) throws ParseException {
 		
+		util util = new util();
 		System.out.println("variavel id é: " + id);
 		
 		Boolean teste = (novo.equals("existente"));
@@ -41,7 +42,8 @@ public class alunoController {
 
 	    	 AlunoDao dao = new AlunoDao();
 	    	 if(novo.equals("novo"))
-	    		 dao.cadastrarAluno(aluno);
+	    		 util.AddBanco(aluno);
+	    		// dao.cadastrarAluno(aluno);
 	    	 else if (novo.equals("existente")) {
 	    		 
 	    		 System.out.println("atualizando aluno");dao.alterarAluno(aluno);
@@ -60,8 +62,9 @@ public class alunoController {
 	
 	@RequestMapping("listaAlunos")
 	public	String lista(Model model) {
-					AlunoDao dao = new AlunoDao();
-					List<Aluno> alunos = dao.consultarListaAluno();	
+					util util = new util();
+					//AlunoDao dao = new AlunoDao();
+					List<Aluno> alunos = util.ListaAlunoBanco();//dao.consultarListaAluno();	
 					System.out.println("buscou alunos no banco e retornou aluno com " + alunos.size() + " alunos. ");
 					model.addAttribute("alunos", alunos);
 					return	"listAlunos";

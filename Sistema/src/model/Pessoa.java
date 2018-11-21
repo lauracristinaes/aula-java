@@ -9,9 +9,11 @@ import java.util.InputMismatchException;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-@Entity
+
+@MappedSuperclass
 public class Pessoa {
 	
 	@Id

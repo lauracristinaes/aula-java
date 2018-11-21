@@ -1,16 +1,19 @@
 package model;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 @Entity
 @Table(name="alunos")
 public class Aluno extends Pessoa{
 	
 	private String matricula;
 	private int curso; // 1 = Java WEB; 2 = Cobol; 3 = .NET; 4 = Redes;  5 = Python;
+	@Transient
 	public List<String> erro;
 	
 	public Aluno() {
