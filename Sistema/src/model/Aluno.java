@@ -3,6 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+@Entity
+@Table(name="alunos")
 public class Aluno extends Pessoa{
 	
 	private String matricula;
@@ -19,6 +23,11 @@ public class Aluno extends Pessoa{
 	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
+	
+	public int getCursoInt() {
+		
+		return curso;
+	}
 
 	public String getCurso() {
 		
@@ -28,7 +37,10 @@ public class Aluno extends Pessoa{
 		
 		this.curso = Integer.parseInt(curso);
 	}
-	
+public void setCursoInt(int curso) {
+		
+		this.curso = curso;
+	}
 	public boolean validate() {
 		
 		//cpf: obrigatório - numérico - válido
@@ -38,15 +50,11 @@ public class Aluno extends Pessoa{
 			
 			
 		} else {
-			String cpf = this.getCpf().replaceAll(".", "");
-			cpf = cpf.replaceAll("-", "");
-			if(!cpf.matches("[0-9]*")) {
-				erro.add("cpf deve conter apenas números");
-			}	
+			if(!this.validaCPF()){
+				erro.add("cpf inválido");
 			}
-		if(!this.validaCPF()){
-			erro.add("cpf inválido");
-		}
+			}
+		
 		
 		
 		

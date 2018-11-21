@@ -7,10 +7,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.omg.CORBA.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.AlunoDao;
 import model.Aluno;
@@ -28,21 +30,22 @@ public class alunoController {
 	}
 	
 	@RequestMapping("adicionaAluno")
-	public	String	adiciona(Aluno	aluno, BindingResult result) throws ParseException {
-		System.out.println("entrou no controller aluno");
+	public	String	adiciona(Aluno	aluno, @RequestParam("novo") String novo, @RequestParam("id") String id) throws ParseException {
 		
+		System.out.println("variavel id é: " + id);
 		
-		System.out.println("A data que veio do form é: " + aluno.getDtNasc());
-		
-		 //Calendar cal = GregorianCalendar.getInstance();
-	    // SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-	    // String d = df.format(cal.getTime());
-	     //Date d2 = df.parse(d);
-	    // aluno.setDtNasc(d2);
-	     
+		Boolean teste = (novo.equals("existente"));
+		System.out.println("novo = existente: " + teste);
+	    
 	     if(aluno.validate()) {
+
 	    	 AlunoDao dao = new AlunoDao();
-	    	 dao.cadastrarAluno(aluno);
+	    	 if(novo.equals("novo"))
+	    		 dao.cadastrarAluno(aluno);
+	    	 else if (novo.equals("existente")) {
+	    		 
+	    		 System.out.println("atualizando aluno");dao.alterarAluno(aluno);
+	    	 }
 	    	 return "alunoadicionado";
 	     }
 	     
@@ -66,6 +69,35 @@ public class alunoController {
 	}
 	
 	
+	@RequestMapping("deletaAluno")
+	public	String deleta(Long id, Model model) {
+					AlunoDao dao = new AlunoDao();
+					
+					System.out.println("valor do id = " + id);
+					
+					dao.deletarAluno(id);	
+					
+					System.out.println("deletou o aluno");
+					//model.addAttribute("tarefas", tarefas);
+					
+					return	"redirect:listaAlunos";
+
+	}
+	
+	@RequestMapping("editaAluno")
+	public	String edita(Long id, Model model) {
+					AlunoDao dao = new AlunoDao();
+					
+					System.out.println("valor do id = " + id);
+					
+					Aluno aluno = dao.recuperarAluno(id);	
+					
+					System.out.println("tem valor o aluno " + aluno.getNome());
+					model.addAttribute("aluno", aluno);
+					
+					return	"addAluno";
+
+	}	
 	
 	
 }

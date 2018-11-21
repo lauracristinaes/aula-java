@@ -39,8 +39,8 @@ public void cadastrarAluno(Aluno aluno) {
 
 			StringBuffer sql = new StringBuffer();
 			
-			sql.append("INSERT INTO  Alunos (nome, cpf, dataNascimento, telefone, endereco, email)");
-			sql.append("VALUES(?,?,?,?,?,?)");
+			sql.append("INSERT INTO  Alunos (nome, cpf, dataNascimento, telefone, endereco, email, sexo, matricula, curso)");
+			sql.append("VALUES(?,?,?,?,?,?,?,?,?)");
 
 			stmt = conn.prepareStatement(sql.toString());
 
@@ -54,6 +54,10 @@ public void cadastrarAluno(Aluno aluno) {
 			stmt.setString(4, aluno.getTelefone());
 			stmt.setString(5, aluno.getEndereco());
 			stmt.setString(6, aluno.getEmail());
+			
+			stmt.setBoolean(7, aluno.isSexo());
+			stmt.setString(8, aluno.getMatricula());
+			stmt.setInt(9, aluno.getCursoInt());
 
 			stmt.execute();
 			conn.commit();
@@ -71,7 +75,7 @@ public void cadastrarAluno(Aluno aluno) {
 			db.finalizaObjetos(rs, stmt, conn);
 		}
 		
-		System.out.println("Aluno: " + aluno.getNome() + "cadastrado com sucesso!");
+		System.out.println("Aluno: " + aluno.getNome() + " cadastrado com sucesso!");
 	}
 
 
@@ -96,23 +100,23 @@ public List<Aluno> consultarListaAluno() {
 		rs = stmt.executeQuery();
 
 		while (rs.next()) {
-			Aluno aluno = new Aluno();
-			//aluno.setId(rs.getLong("id")); 
-			//aluno.setDescricao(rs.getString("descricao"));
-			//aluno.setFinalizado(rs.getBoolean("finalizado"));
-			//Aluno.setDataFinalizacao(rs.getDate("dataFinalizacao");
-			System.out.println("setou um aluno");
+			Aluno aluno = new Aluno();			
 			
 			aluno.setId(rs.getLong("id"));
+			
 			aluno.setNome(rs.getString("nome"));
 			aluno.setCpf(rs.getString("cpf"));
-			aluno.setDtNasc(rs.getDate("dataNascimento"));
-			aluno.setEmail(rs.getString("email"));
+			aluno.setDtNascDate(rs.getDate("dataNascimento"));
 			
+			aluno.setEmail(rs.getString("email"));			
 			aluno.setEndereco(rs.getString("endereco"));
 			aluno.setTelefone(rs.getString("telefone"));
 			
-			listaAluno.add(aluno);
+			aluno.setSexo(rs.getBoolean("sexo"));
+			aluno.setMatricula(rs.getString("matricula"));
+			aluno.setCursoInt(rs.getInt("curso"));
+			
+			listaAluno.add(aluno);System.out.println("setou um aluno");
 		}
 
 	} catch (SQLException e) {
@@ -159,8 +163,67 @@ public void deletarAluno(Long id) {
 	
 }
 
+public Aluno recuperarAluno(Long id) {
+	Connection conn = null;
+	PreparedStatement stmt = null;
+	ResultSet rs = null;
+	
+	Aluno aluno = new Aluno();	
+
+	try {
+		conn = db.obterConexao();
+		conn.setAutoCommit(false);
+
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append("SELECT * FROM Alunos WHERE ID = ?");
+	
+
+		stmt = conn.prepareStatement(sql.toString());
+		stmt.setLong(1, id);
+
+		rs = stmt.executeQuery();
+
+		while (rs.next()) {
+					
+			
+			aluno.setId(rs.getLong("id"));
+			
+			aluno.setNome(rs.getString("nome"));
+			aluno.setCpf(rs.getString("cpf"));
+			aluno.setDtNascDate(rs.getDate("dataNascimento"));
+			
+			aluno.setEmail(rs.getString("email"));			
+			aluno.setEndereco(rs.getString("endereco"));
+			aluno.setTelefone(rs.getString("telefone"));
+			
+			aluno.setSexo(rs.getBoolean("sexo"));
+			aluno.setMatricula(rs.getString("matricula"));
+			aluno.setCursoInt(rs.getInt("curso"));
+			
+			System.out.println("recuperou um aluno");
+		}
+	} catch (SQLException e) {
+		if (conn != null) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				System.out.println("Erro no método recuperarAluno - rollback");
+			}
+		}
+		System.out.println("Erro no método recuperarAluno");
+		e.printStackTrace();
+	} finally {
+		db.finalizaObjetos(rs, stmt, conn);
+	}
+	return aluno;
+	
+}
+
 
 public void alterarAluno(Aluno aluno) {
+	
+	System.out.println("atualizando aluno");
 	Connection conn = null;
 	PreparedStatement stmt = null;
 	ResultSet rs = null;
@@ -171,18 +234,27 @@ public void alterarAluno(Aluno aluno) {
 
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("UPDATE Alunos SET nome = ?, cpf = ?, dataNascimento = ?, telefone = ?, endereco = ?, email = ? "); // 
+		sql.append("UPDATE Alunos SET nome = ?, cpf = ?, dataNascimento = ?, telefone = ?, endereco = ?, email = ?, sexo = ?, matricula = ?, curso = ?"); // 
 		sql.append("WHERE id = ?;");
 
 		stmt = conn.prepareStatement(sql.toString());
-		//stmt.setString(1, aluno.getDescricao());
-		//stmt.setBoolean(2, aluno.isFinalizado());
 		
-		//java.util.Date vdata = aluno.getDataFinalizacao();
-		//java.sql.Date date =new java.sql.Date(vdata.getTime());
+		stmt.setString(1, aluno.getNome());
+		stmt.setString(2, aluno.getCpf());
 		
-		//stmt.setDate(3, date);
-		//stmt.setLong(4, aluno.getId());
+		java.util.Date vdata = aluno.getDtNasc();
+		java.sql.Date date =new java.sql.Date(vdata.getTime());
+		stmt.setDate(3, date);
+		
+		stmt.setString(4, aluno.getTelefone());
+		stmt.setString(5, aluno.getEndereco());
+		stmt.setString(6, aluno.getEmail());
+		
+		stmt.setBoolean(7, aluno.isSexo());
+		stmt.setString(8, aluno.getMatricula());
+		stmt.setInt(9, aluno.getCursoInt());
+	
+		stmt.setLong(10, aluno.getId());
 
 		stmt.execute();
 		conn.commit();

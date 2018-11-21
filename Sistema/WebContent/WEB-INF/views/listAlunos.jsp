@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
@@ -20,18 +21,31 @@
 		  <table class="table table-hover">
 		    <thead>
 		      <tr>
-		        <th>Nome/Email</th>
-		        <th>CPF/Endereço</th>
-		        <th>Data de Nascimento/Telefone</th>
+		        <th>Nome</th>
+		        <th>CPF</th>
+		        <th>Email</th>
+		        <th>Curso</th>
+		        <th>Opções</th>
 		      </tr>
 		    </thead>
 		    <tbody>
 		     <c:forEach var="aluno" items="${alunos}">
 		      <tr>
+		        <td>${aluno.nome}</td>
+		        <td>${aluno.cpf}</td>
 		        <td>${aluno.email}</td>
-		        <td>${aluno.endereco}</td>
-		        <td>${aluno.telefone}</td>
-		     
+		     	<td>
+		     	<c:choose>
+			        <c:when test="${aluno.curso == 1}">JavaWeb</c:when>
+			        <c:when test="${aluno.curso == 2}">Cobol</c:when>
+			        <c:when test="${aluno.curso == 3}">.NET</c:when>
+			        <c:when test="${aluno.curso == 4}">Redes</c:when>
+			        <c:when test="${aluno.curso == 5}">Phyton</c:when>
+			        <c:otherwise>Sem Curso</c:otherwise>
+			    </c:choose>
+		     	</td>
+		     	<td><a href="editaAluno?id=${aluno.id}" class="btn btn-info" role="button">Editar</a>
+		     	<a href="deletaAluno?id=${aluno.id}" class="btn btn-info" role="button">Deletar</a></td>
 		      </tr>
 		      </c:forEach>
 		      
