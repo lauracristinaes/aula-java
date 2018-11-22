@@ -48,5 +48,30 @@ public class util {
     
 	}
 	
+	public Aluno RecuperaAlunoBanco(Long id) {
+		
+		   EntityManagerFactory factory = Persistence.
+	                createEntityManagerFactory("cadastro");
+	    
+		   EntityManager	manager	=	factory.createEntityManager();
+		   manager.getTransaction().begin();	
+			
+		   Aluno aluno	= manager.find(Aluno.class, id);
+		   
+		
+		   System.out.println("aluno recuperado do banco: ");
+		   System.out.println(aluno.isSexo());
+		   System.out.println(aluno.getEndereco());
+		   
+		   manager.getTransaction().commit();		
+
+		   factory.close();
+		   manager.close();
+		    
+		   return aluno;
+	    
+	    
+		}
+	
 
 }

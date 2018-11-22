@@ -89,11 +89,12 @@ public class alunoController {
 	
 	@RequestMapping("editaAluno")
 	public	String edita(Long id, Model model) {
-					AlunoDao dao = new AlunoDao();
+					//AlunoDao dao = new AlunoDao();
+					util util = new util();
 					
 					System.out.println("valor do id = " + id);
 					
-					Aluno aluno = dao.recuperarAluno(id);	
+					Aluno aluno = util.RecuperaAlunoBanco(id); //dao.recuperarAluno(id);	
 					
 					System.out.println("tem valor o aluno " + aluno.getNome());
 					model.addAttribute("aluno", aluno);
