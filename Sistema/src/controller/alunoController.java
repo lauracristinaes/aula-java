@@ -33,20 +33,21 @@ public class alunoController {
 	public	String	adiciona(Aluno	aluno, @RequestParam("novo") String novo, @RequestParam("id") String id) throws ParseException {
 		
 		util util = new util();
-		System.out.println("variavel id é: " + id);
+		//System.out.println("variavel id é: " + id);
 		
 		Boolean teste = (novo.equals("existente"));
-		System.out.println("novo = existente: " + teste);
+		//System.out.println("novo = existente: " + teste);
 	    
 	     if(aluno.validate()) {
 
-	    	 AlunoDao dao = new AlunoDao();
+	    	// AlunoDao dao = new AlunoDao();
 	    	 if(novo.equals("novo"))
 	    		 util.AddBanco(aluno);
 	    		// dao.cadastrarAluno(aluno);
 	    	 else if (novo.equals("existente")) {
 	    		 
-	    		 System.out.println("atualizando aluno");dao.alterarAluno(aluno);
+	    		 System.out.println("atualizando aluno");
+	    		 util.UpdateAlunoBanco(aluno); //dao.alterarAluno(aluno);
 	    	 }
 	    	 return "alunoadicionado";
 	     }
@@ -55,6 +56,10 @@ public class alunoController {
 	     for(String erros: aluno.erro) {
 	    	 System.out.println(" " + erros + " ");
 	     }
+	     
+	     if(aluno.erro.isEmpty()) {
+	    	 
+	     }else {}
 	        
 		return "addAluno";
 		
@@ -65,7 +70,7 @@ public class alunoController {
 					util util = new util();
 					//AlunoDao dao = new AlunoDao();
 					List<Aluno> alunos = util.ListaAlunoBanco();//dao.consultarListaAluno();	
-					System.out.println("buscou alunos no banco e retornou aluno com " + alunos.size() + " alunos. ");
+					//System.out.println("buscou alunos no banco e retornou aluno com " + alunos.size() + " alunos. ");
 					model.addAttribute("alunos", alunos);
 					return	"listAlunos";
 
@@ -74,13 +79,14 @@ public class alunoController {
 	
 	@RequestMapping("deletaAluno")
 	public	String deleta(Long id, Model model) {
-					AlunoDao dao = new AlunoDao();
+					//AlunoDao dao = new AlunoDao();
+					util util = new util();
 					
-					System.out.println("valor do id = " + id);
+					//System.out.println("valor do id = " + id);
+					System.out.println("tentando deletar o aluno");
+					util.RemoveAlunoBanco(id);//dao.deletarAluno(id);	
 					
-					dao.deletarAluno(id);	
 					
-					System.out.println("deletou o aluno");
 					//model.addAttribute("tarefas", tarefas);
 					
 					return	"redirect:listaAlunos";

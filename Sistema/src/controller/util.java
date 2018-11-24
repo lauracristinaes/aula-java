@@ -73,5 +73,46 @@ public class util {
 	    
 		}
 	
+	public void UpdateAlunoBanco(Aluno aluno) {
+		
+		   EntityManagerFactory factory = Persistence.
+	                createEntityManagerFactory("cadastro");
+	    
+		   EntityManager	manager	=	factory.createEntityManager();
+		   manager.getTransaction().begin();	
+				   
+		   manager.merge(aluno);
+		   
+		   manager.getTransaction().commit();		
+
+		   factory.close();
+		   manager.close();	    	   
+	    
+		}
+	
+	public void RemoveAlunoBanco(Long id) {
+		
+		   EntityManagerFactory factory = Persistence.
+	                createEntityManagerFactory("cadastro");
+	    
+		   EntityManager	manager	=	factory.createEntityManager();
+		   manager.getTransaction().begin();	
+		   System.out.println("o valor que veio de id é: " + id);
+		   
+		   Query	query	=	manager
+					.createQuery("delete from Aluno where id = :id");
+		   query.setParameter("id", id);
+		   query.executeUpdate();
+
+		      
+		   //Aluno aluno	= manager.find(Aluno.class, id);	
+		  // manager.remove(aluno);
+
+		   factory.close();
+		   manager.close();
+		    
+	
+	    	    
+		}
 
 }
